@@ -11,9 +11,9 @@
 		BE1CEB2420EEE9F700B78FD7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1CEB2320EEE9F700B78FD7 /* AppDelegate.swift */; };
 		BE1CEB2620EEE9F700B78FD7 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1CEB2520EEE9F700B78FD7 /* SignInVC.swift */; };
 		BE1CEB2920EEE9F700B78FD7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE1CEB2720EEE9F700B78FD7 /* Main.storyboard */; };
-		BE1CEB2B20EEE9F700B78FD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE1CEB2A20EEE9F700B78FD7 /* Assets.xcassets */; };
 		BE1CEB2E20EEE9F700B78FD7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE1CEB2C20EEE9F700B78FD7 /* LaunchScreen.storyboard */; };
 		BE1CEB3620EEEAAA00B78FD7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BE1CEB3520EEEAAA00B78FD7 /* GoogleService-Info.plist */; };
+		BEB4748920F0808700CADE67 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEB4748820F0808700CADE67 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,10 +22,10 @@
 		BE1CEB2320EEE9F700B78FD7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE1CEB2520EEE9F700B78FD7 /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
 		BE1CEB2820EEE9F700B78FD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		BE1CEB2A20EEE9F700B78FD7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE1CEB2D20EEE9F700B78FD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BE1CEB2F20EEE9F700B78FD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE1CEB3520EEEAAA00B78FD7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		BEB4748820F0808700CADE67 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EA65B6B64E3C0758D2081A4F /* Pods-SocialMedia.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SocialMedia.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SocialMedia/Pods-SocialMedia.debug.xcconfig"; sourceTree = "<group>"; };
 		F1E95E93F37B55D89CE45D30 /* Pods_SocialMedia.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SocialMedia.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -84,7 +84,7 @@
 				BE95A5BA20EF114D0061D357 /* Model */,
 				BE1CEB2320EEE9F700B78FD7 /* AppDelegate.swift */,
 				BE1CEB2720EEE9F700B78FD7 /* Main.storyboard */,
-				BE1CEB2A20EEE9F700B78FD7 /* Assets.xcassets */,
+				BEB4748820F0808700CADE67 /* Assets.xcassets */,
 				BE1CEB2C20EEE9F700B78FD7 /* LaunchScreen.storyboard */,
 				BE1CEB2F20EEE9F700B78FD7 /* Info.plist */,
 				BE1CEB3520EEEAAA00B78FD7 /* GoogleService-Info.plist */,
@@ -169,8 +169,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE1CEB2E20EEE9F700B78FD7 /* LaunchScreen.storyboard in Resources */,
-				BE1CEB2B20EEE9F700B78FD7 /* Assets.xcassets in Resources */,
 				BE1CEB3620EEEAAA00B78FD7 /* GoogleService-Info.plist in Resources */,
+				BEB4748920F0808700CADE67 /* Assets.xcassets in Resources */,
 				BE1CEB2920EEE9F700B78FD7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

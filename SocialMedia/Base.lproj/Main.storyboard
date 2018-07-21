@@ -76,6 +76,9 @@
                                 </constraints>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" image="f-1"/>
+                                <connections>
+                                    <action selector="facebookBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QTk-QZ-fNb"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="sMS-CU-dQ8">
                                 <rect key="frame" x="30" y="361" width="315" height="108"/>

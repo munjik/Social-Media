@@ -12,7 +12,13 @@ import FBSDKCoreKit
 import Firebase
 
 class SignInVC: UIViewController {
-
+    
+    // text fields for sign in
+    
+    @IBOutlet weak var emailField: UITextField!
+    
+    @IBOutlet weak var passwordField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -46,11 +52,39 @@ class SignInVC: UIViewController {
             Auth.auth().signIn(with: credential, completion: { (user, error ) in
                 if error != nil {
                     print("Munji: Unable to authenticate with fire base - \(error)")
+                } else {
+                    print("Munji: Succesfully authenticated with Firebase")
                 }
                 
             })
             
         }
     }
+    
+    @IBAction func signInPressed(_ sender: Any) {
+        if let email = emailField.text, let password = passwordField.text {
+            //firebase authentification
+            Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
+                // means user existed and password is great, essentially no errors
+                if error == nil {
+                    print("Munji, email has been welcomed to the app")
+                    // then lets create one
+                } else {
+                    Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
+                        // if we come accross error then throw an error
+                        if error != nil {
+                            print("Munji: Failed to create an account w/ email")
+                            // else the account was created
+                        } else {
+                            print("Munji: Succesfully created account w/ email")
+                        }
+                    })
+                }
+            })
+            
+        }
+    }
+    
+    
 }
 

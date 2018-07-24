@@ -10,6 +10,7 @@ import UIKit
 import FBSDKLoginKit
 import FBSDKCoreKit
 import Firebase
+import SwiftKeychainWrapper
 
 class SignInVC: UIViewController {
     
@@ -21,7 +22,15 @@ class SignInVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+    }
+    //SEGUES NEED TO BE PERFORMED HERE NOT viewDidLoad
+    override func viewDidAppear(_ animated: Bool) {
+        // if it finds the account go straight to the feed
+        if let _ =  KeychainWrapper.standard.string(forKey: KEY_UID) {
+            performSegue(withIdentifier: "goToFeed", sender: nil)
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,6 +63,11 @@ class SignInVC: UIViewController {
                     print("Munji: Unable to authenticate with fire base - \(error)")
                 } else {
                     print("Munji: Succesfully authenticated with Firebase")
+                    if let user = user {
+                        // we added the keychain wrapper here cause we are creating an account and the keychain is saved now here
+                        self.completeSignIn(id: user.uid)
+                    }
+                    
                 }
                 
             })
@@ -68,6 +82,9 @@ class SignInVC: UIViewController {
                 // means user existed and password is great, essentially no errors
                 if error == nil {
                     print("Munji, email has been welcomed to the app")
+                    if let user = user {
+                        self.completeSignIn(id: user.user.uid)
+                    }
                     // then lets create one
                 } else {
                     Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
@@ -77,6 +94,10 @@ class SignInVC: UIViewController {
                             // else the account was created
                         } else {
                             print("Munji: Succesfully created account w/ email")
+                            if let user = user {
+                                self.completeSignIn(id: user.user.uid)
+                            }
+                            
                         }
                     })
                 }
@@ -84,7 +105,12 @@ class SignInVC: UIViewController {
             
         }
     }
-    
+    func completeSignIn(id: String) {
+        let keychainResult = KeychainWrapper.standard.set(id, forKey: KEY_UID)
+        print("Munji: Data saved to Keychain \(keychainResult)")
+        performSegue(withIdentifier: "goToFeed", sender: nil)
+
+    }
     
 }
 

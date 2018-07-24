@@ -9,3 +9,5 @@
 import UIKit
 
 let SHADOW_GRAY: CGFloat = 120.0 / 255.0
+//vice's unique ID key) is an AES 256-bit hardware key, unique to each iPhone. 
+let KEY_UID = "uid"

@@ -10,12 +10,26 @@ import UIKit
 import SwiftKeychainWrapper
 import Firebase
 
-class TimeLineVC: UIViewController {
+class TimeLineVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return tableView.dequeueReusableCell(withIdentifier: "PostingCell") as! PostingCell
+    }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        tableView.delegate = self
+        tableView.dataSource = self
     }
 
     // When sign out button is pressed we will go back to the login page
@@ -26,6 +40,5 @@ class TimeLineVC: UIViewController {
         //sign out with firebase
         try! Auth.auth().signOut()
         performSegue(withIdentifier: "goToSignIn", sender: nil)
-
     }
 }

@@ -13,6 +13,7 @@
 		BE1CEB2920EEE9F700B78FD7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE1CEB2720EEE9F700B78FD7 /* Main.storyboard */; };
 		BE1CEB2E20EEE9F700B78FD7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE1CEB2C20EEE9F700B78FD7 /* LaunchScreen.storyboard */; };
 		BE1CEB3620EEEAAA00B78FD7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BE1CEB3520EEEAAA00B78FD7 /* GoogleService-Info.plist */; };
+		BE4FA11F210AC30E00396EA9 /* DataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4FA11E210AC30E00396EA9 /* DataServices.swift */; };
 		BEA37428210976BD00692FCA /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA37427210976BD00692FCA /* CircleView.swift */; };
 		BEA3742C21098A0000692FCA /* PostingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA3742B21098A0000692FCA /* PostingCell.swift */; };
 		BEAA80722106C18C001A2675 /* TimeLineVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAA80712106C18C001A2675 /* TimeLineVC.swift */; };
@@ -34,6 +35,7 @@
 		BE1CEB2D20EEE9F700B78FD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BE1CEB2F20EEE9F700B78FD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE1CEB3520EEEAAA00B78FD7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		BE4FA11E210AC30E00396EA9 /* DataServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataServices.swift; sourceTree = "<group>"; };
 		BEA37427210976BD00692FCA /* CircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		BEA3742B21098A0000692FCA /* PostingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingCell.swift; sourceTree = "<group>"; };
 		BEAA80712106C18C001A2675 /* TimeLineVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineVC.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 		BE1CEB2220EEE9F700B78FD7 /* SocialMedia */ = {
 			isa = PBXGroup;
 			children = (
+				BE4FA11D210AC2F300396EA9 /* Services */,
 				BE0AE0292104EB85002E0ABF /* SocialMedia.entitlements */,
 				BEB4749020F08CDB00CADE67 /* Util */,
 				BEB4748D20F08C1200CADE67 /* View */,
@@ -110,6 +113,14 @@
 				BE1CEB3520EEEAAA00B78FD7 /* GoogleService-Info.plist */,
 			);
 			path = SocialMedia;
+			sourceTree = "<group>";
+		};
+		BE4FA11D210AC2F300396EA9 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				BE4FA11E210AC30E00396EA9 /* DataServices.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		BE95A5BA20EF114D0061D357 /* Model */ = {
@@ -287,6 +298,7 @@
 				BEC2CAE420F452C5003815AC /* CleanField.swift in Sources */,
 				BEC2CAE620F46037003815AC /* CleanBtn.swift in Sources */,
 				BE1CEB2620EEE9F700B78FD7 /* SignInVC.swift in Sources */,
+				BE4FA11F210AC30E00396EA9 /* DataServices.swift in Sources */,
 				BEAA80722106C18C001A2675 /* TimeLineVC.swift in Sources */,
 				BEC2CAE220F4512B003815AC /* RoundBtn.swift in Sources */,
 				BE1CEB2420EEE9F700B78FD7 /* AppDelegate.swift in Sources */,

@@ -30,6 +30,13 @@ class TimeLineVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        
+        
+        // this code will print out our data in reference to the REF_POST, so all the data under there will be called
+        DataServices.ds.REF_POST.observe(.value) { (snapshot) in
+            
+            print(snapshot.value)
+        }
     }
 
     // When sign out button is pressed we will go back to the login page

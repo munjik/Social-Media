@@ -27,6 +27,7 @@ class TimeLineVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         // this code will print out our data in reference to the REF_POST, so all the data under there will be called
         DataServices.ds.REF_POST.observe(.value) { (snapshot) in
             //getting all the data of the child of posts
+                                                  //pretty sure this is also parsing up until self.tableView.reloadData()
             if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
                 for i in snapshot {
                     print("SNAP: \(i)")

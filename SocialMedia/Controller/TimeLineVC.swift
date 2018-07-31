@@ -46,12 +46,19 @@ class TimeLineVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts.count
     }
-    
+    // setting our tableViews stuff to be efficent with the DQReusable. 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let post = posts[indexPath.row]
-        print("Munj: \(post.caption)")
         
-        return tableView.dequeueReusableCell(withIdentifier: "PostingCell") as! PostingCell
+        let post = posts[indexPath.row]
+        
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "PostingCell") as? PostingCell {
+            cell.configureCell(post: post)
+            return cell
+            
+        } else {
+            return PostingCell()
+        }
+
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1

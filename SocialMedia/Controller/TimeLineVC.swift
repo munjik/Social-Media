@@ -14,18 +14,10 @@ class TimeLineVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
-    }
+    var posts = [Post]()
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCell(withIdentifier: "PostingCell") as! PostingCell
-    }
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -34,10 +26,38 @@ class TimeLineVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         // this code will print out our data in reference to the REF_POST, so all the data under there will be called
         DataServices.ds.REF_POST.observe(.value) { (snapshot) in
-            
-            print(snapshot.value)
+            //getting all the data of the child of posts
+            if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
+                for i in snapshot {
+                    print("SNAP: \(i)")
+                    /// if it can grab the Key on Firebase
+                    if let postDict = i.value as? Dictionary<String, AnyObject> {
+                        ///The key of the location that generated this FIRDataSnapshot
+                        let key = i.key
+                        let post = Post(postKey: key, postData: postDict)
+                        self.posts.append(post)                    }
+                    
+                }
+            }
+                self.tableView.reloadData()
         }
     }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return posts.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let post = posts[indexPath.row]
+        print("Munj: \(post.caption)")
+        
+        return tableView.dequeueReusableCell(withIdentifier: "PostingCell") as! PostingCell
+    }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+
 
     // When sign out button is pressed we will go back to the login page
     @IBAction func signOutPressed(_ sender: Any) {

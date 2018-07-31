@@ -1,4 +1,4 @@
-//
+//  THIS IS PARSING THE DATA Monday July 30th
 //  Post.swift
 //  SocialMedia
 //

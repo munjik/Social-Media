@@ -10,11 +10,14 @@ import UIKit
 import SwiftKeychainWrapper
 import Firebase
 
-class TimeLineVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TimeLineVC: UIViewController, UITableViewDelegate, UITableViewDataSource, /* delegates for UIPicker*/ UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var addImage: CircleView!
     
     var posts = [Post]()
+    var imagePicker: UIImagePickerController!
+    
     
     
     
@@ -22,6 +25,10 @@ class TimeLineVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        
+        imagePicker = UIImagePickerController()
+        imagePicker.allowsEditing = true //crops images and stuff thats it
+        imagePicker.delegate = self
         
         
         // this code will print out our data in reference to the REF_POST, so all the data under there will be called
@@ -35,14 +42,13 @@ class TimeLineVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                         ///The key of the location that generated this FIRDataSnapshot
                         let key = i.key
                         let post = Post(postKey: key, postData: postDict)
-                        self.posts.append(post)                    }
-                    
+                        self.posts.append(post)
+                    }
                 }
             }
                 self.tableView.reloadData()
         }
     }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts.count
     }
@@ -58,13 +64,11 @@ class TimeLineVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         } else {
             return PostingCell()
         }
-
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-
 
     // When sign out button is pressed we will go back to the login page
     @IBAction func signOutPressed(_ sender: Any) {
@@ -75,4 +79,36 @@ class TimeLineVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         try! Auth.auth().signOut()
         performSegue(withIdentifier: "goToSignIn", sender: nil)
     }
+    
+    @IBAction func addImageTapped(_ sender: Any) {
+        
+        
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    // once we've selected the image picker get rid of it. Simple
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        /*Making sure we return an image, "edited Image" because we allow them to edit
+         and we make sure it's type UIImage because ->c"as? UIImage" we need to return an image*/
+        if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
+            // then set it to our image, it shows a preview when you're about to psot 
+            addImage.image = image
+        } else {
+            print("Munji: A valid Image was not selected, please try again")
+        }
+        imagePicker.dismiss(animated: true, completion: nil)
+    }
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+

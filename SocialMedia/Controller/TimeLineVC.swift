@@ -14,9 +14,12 @@ class TimeLineVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addImage: CircleView!
+    @IBOutlet weak var captionField: CleanField!
     
     var posts = [Post]()
     var imagePicker: UIImagePickerController!
+    static var imageCache: NSCache<NSString, UIImage> = NSCache()
+    var imagesSelected = false
     
     
     
@@ -58,8 +61,14 @@ class TimeLineVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         let post = posts[indexPath.row]
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "PostingCell") as? PostingCell {
-            cell.configureCell(post: post)
-            return cell
+            
+            if let img = TimeLineVC.imageCache.object(forKey: post.imageURL  as NSString) {
+                cell.configureCell(post: post, img: img)
+                return cell
+            } else {
+                cell.configureCell(post: post)
+                return cell
+            }
             
         } else {
             return PostingCell()
@@ -68,8 +77,40 @@ class TimeLineVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    /* Make sure caption is added */
+    @IBAction func postBtnTapped(_ sender: Any) {
+        guard let caption = captionField.text , caption != "" else {
+            print("please add a caption")
+            return
+        }
+        /* we use gurad to strictly make sure we have an image, same as above with caption */
+        guard let img = addImage.image, imagesSelected == true else {
+            print("please add an image to complete post")
+            return
+        }
+        
+        if let imgData = UIImageJPEGRepresentation(img, 0.2) {
+            //unique ID for downloading pictures
+            let imgUid = NSUUID().uuidString
+            // telling firebase we wanna jpeg
+            let metadata = StorageMetadata()
+            metadata.contentType = "image/jpeg"
+            
+            DataServices.ds.REF_IMAGES.child(imgUid).putData(imgData, metadata: metadata) { (metadata, error) in
+             
+                
+                if error != nil {
+                    print("Munji: Unable to upload images to Firebase storage")
+                } else {
+                    print("Munji: image uploaded to firebase storage")
+                    // this allows us to upload the photo to firebas storage
+                     let downloadURL = StorageReference.downloadURL(completion:)
+                    
+                }
+            }
+        }
+    }
     
-
     // When sign out button is pressed we will go back to the login page
     @IBAction func signOutPressed(_ sender: Any) {
         // removing the keychain
@@ -93,11 +134,14 @@ class TimeLineVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
             // then set it to our image, it shows a preview when you're about to psot 
             addImage.image = image
+            imagesSelected = true
         } else {
             print("Munji: A valid Image was not selected, please try again")
         }
         imagePicker.dismiss(animated: true, completion: nil)
     }
+    
+    
     
 }
 
